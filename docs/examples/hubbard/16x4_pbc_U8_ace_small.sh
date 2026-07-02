@@ -1,0 +1,50 @@
+python main.py \
+ --output outputs/hubbard/16_4_pbc_U8/tensor_ndet1\
+ --L1 16\
+ --L2 4\
+ --particles 56\
+ --U 4\
+ --model hubbard\
+ --steps 5000\
+ --network_name tensor\
+ --boundary1 pbc\
+ --boundary2 pbc\
+ --save_frequency 5000\
+ --use_x64\
+ --mcmc_step 128\
+ --mode adam\
+ --lr 5e-2\
+ --ndet 1\
+ --reduce 200\
+ --seed 100\
+ --fast_update\
+ --batchsize 4096
+
+
+python main.py \
+ --restore outputs/hubbard/16_4_pbc_U8/tensor_ndet1\
+ --restore_ndet 1\
+ --output outputs/hubbard/16_4_pbc_U8/ace_small_N5e-1_fromU4\
+ --L1 16\
+ --L2 4\
+ --particles 56\
+ --U 8\
+ --model hubbard\
+ --steps 30000\
+ --network_name ace\
+ --boundary1 pbc\
+ --boundary2 pbc\
+ --save_frequency 2000\
+ --use_x64\
+ --mcmc_step 160\
+ --mode march\
+ --norm 5e-1\
+ --lr_start 1000\
+ --lr0 4000\
+ --ndet 1 \
+ --hidden 128\
+ --layers 12\
+ --reduce 200\
+ --seed 100\
+ --precision tf32\
+ --batchsize 4096

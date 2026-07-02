@@ -1,0 +1,78 @@
+python main.py\
+ --output outputs/hubbard/16_8_pbc_U8/tensor_stripe_U4\
+ --L1 16\
+ --L2 8\
+ --particles 112\
+ --U 4\
+ --hm 0.05\
+ --htype vert_spin_hole\
+ --lambda_h 8\
+ --model hubbard\
+ --steps 5000\
+ --network_name tensor\
+ --boundary1 pbc\
+ --boundary2 pbc\
+ --save_frequency 5000\
+ --use_x64\
+ --mcmc_step 256\
+ --mode adam\
+ --lr 5e-2\
+ --ndet 1\
+ --reduce 500\
+ --seed 100\
+ --fast_update\
+ --batchsize 4096
+
+
+python main.py \
+ --restore outputs/hubbard/16_8_pbc_U8/tensor_stripe_U4\
+ --restore_ndet 1\
+ --output outputs/hubbard/16_8_pbc_U8/scale_small_N5e-1_fromU4\
+ --L1 16\
+ --L2 8\
+ --particles 112\
+ --U 8\
+ --model hubbard\
+ --steps 20000\
+ --network_name scale\
+ --boundary1 pbc\
+ --boundary2 pbc\
+ --save_frequency 2000\
+ --use_x64\
+ --mcmc_step 320\
+ --mode march\
+ --norm 5e-1\
+ --lr_start 1000\
+ --lr0 8000\
+ --ndet 1 \
+ --hidden 256\
+ --MLP_hidden 512\
+ --MLP_layers 4\
+ --reduce 500\
+ --seed 100\
+ --fast_update\
+ --batchsize 4096
+
+
+python main.py \
+ --output outputs/hubbard/16_8_pbc_U8/scale_small_N5e-1_fromU4\
+ --L1 16\
+ --L2 8\
+ --particles 112\
+ --U 8\
+ --model hubbard\
+ --steps 5000\
+ --network_name scale\
+ --boundary1 pbc\
+ --boundary2 pbc\
+ --use_x64\
+ --mcmc_step 320\
+ --mode gfmc\
+ --ndet 1 \
+ --hidden 256\
+ --MLP_hidden 512\
+ --MLP_layers 4\
+ --reduce 448\
+ --seed 100\
+ --fast_update\
+ --batchsize 4096

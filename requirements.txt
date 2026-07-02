@@ -1,0 +1,9 @@
+-c constraints.txt
+--find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+jax[cuda12_pip]==0.5.0
+chex==0.1.90
+scipy==1.13.0
+optax==0.2.2
+numpy==1.26.4
+tqdm==4.66.5

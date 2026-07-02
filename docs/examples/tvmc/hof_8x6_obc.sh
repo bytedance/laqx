@@ -1,0 +1,72 @@
+python main.py \
+ --output outputs/hofstadter/8_6_N4_obc_V2/ace_small2_hv-4_N5e-1\
+ --L1 8\
+ --L2 6\
+ --particles 4\
+ --particles_up 4\
+ --V 2\
+ --alpha 0.25\
+ --hv -4\
+ --model hofstadter\
+ --dtype complex\
+ --steps 10000\
+ --network_name ace\
+ --boundary1 obc\
+ --boundary2 obc\
+ --save_frequency 2000\
+ --use_x64\
+ --mcmc_step 40\
+ --mode march\
+ --norm 5e-1\
+ --lr_start 1000\
+ --lr0 4000\
+ --ndet 1 \
+ --hidden 128\
+ --layers 12\
+ --MLP_hidden 256\
+ --MLP_layers 1\
+ --reduce 100\
+ --pad 5\
+ --seed 100\
+ --precision tf32\
+ --batchsize 4096\
+ --polarized
+
+python main.py \
+ --restore outputs/hofstadter/8_6_N4_obc_V2/ace_small2_hv-4_N5e-1\
+ --output outputs/hofstadter/8_6_N4_obc_V2/ace_small2_peft_tvmc_lr2e-3_rk4_B40960_svd1e-8\
+ --L1 8\
+ --L2 6\
+ --particles 4\
+ --particles_up 4\
+ --V 2\
+ --alpha 0.25\
+ --model hofstadter\
+ --dtype complex\
+ --steps 5000\
+ --network_name ace_peft\
+ --boundary1 obc\
+ --boundary2 obc\
+ --save_frequency 1000\
+ --use_x64\
+ --mcmc_step 30\
+ --burn_in\
+ --drop_step 200\
+ --mode tvmc\
+ --lr 2e-3\
+ --integrator rk4\
+ --mu 0\
+ --solver svd\
+ --pinv_cutoff 1e-8\
+ --ndet 1 \
+ --hidden 128\
+ --layers 12\
+ --MLP_hidden 256\
+ --MLP_layers 1\
+ --reduce 100\
+ --pad 5\
+ --seed 100\
+ --precision tf32\
+ --batchsize 40960\
+ --polarized\
+ --obs density

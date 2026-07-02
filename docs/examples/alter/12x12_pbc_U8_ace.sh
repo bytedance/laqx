@@ -1,0 +1,77 @@
+python main.py \
+ --output outputs/alter/12_12_N144_U8_pbc/tensor_U3\
+ --L1 12\
+ --L2 12\
+ --particles 144\
+ --U 3\
+ --t2 0.4\
+ --model hubbard_alter\
+ --steps 5000\
+ --network_name tensor\
+ --boundary1 pbc\
+ --boundary2 pbc\
+ --save_frequency 5000\
+ --use_x64\
+ --mcmc_step 360\
+ --mode adam\
+ --lr 5e-2\
+ --ndet 1 \
+ --reduce 500\
+ --seed 100\
+ --batchsize 4096\
+ --fast_update
+
+python main.py \
+ --restore outputs/alter/12_12_N144_U8_pbc/tensor_U3\
+ --restore_ndet 1\
+ --output outputs/alter/12_12_N144_U8_pbc/ace\
+ --L1 12\
+ --L2 12\
+ --particles 144\
+ --U 8\
+ --t2 0.4\
+ --model hubbard_alter\
+ --steps 50000\
+ --network_name ace\
+ --boundary1 pbc\
+ --boundary2 pbc\
+ --save_frequency 5000\
+ --use_x64\
+ --mcmc_step 360\
+ --mode march\
+ --norm 1e-1\
+ --lr_start 1000\
+ --lr0 4000\
+ --ndet 1 \
+ --hidden 144\
+ --layers 16\
+ --reduce 500\
+ --seed 100\
+ --precision tf32\
+ --batchsize 4096
+
+
+
+python main.py \
+ --output outputs/alter/12_12_N144_U8_pbc/ace\
+ --L1 12\
+ --L2 12\
+ --particles 144\
+ --U 8\
+ --t2 0.4\
+ --model hubbard_alter\
+ --steps 5000\
+ --network_name ace\
+ --boundary1 pbc\
+ --boundary2 pbc\
+ --use_x64\
+ --mcmc_step 200\
+ --mode test\
+ --obs fermi\
+ --ndet 1 \
+ --hidden 144\
+ --layers 16\
+ --reduce 2000\
+ --seed 100\
+ --precision tf32\
+ --batchsize 4096

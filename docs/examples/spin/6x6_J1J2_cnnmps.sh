@@ -1,0 +1,34 @@
+python main.py \
+ --output outputs/spin/6_6/cnnmps_D4_H32_L20_MLP64_MPS20_mar_N2e-2_mu0.98\
+ --L1 6\
+ --L2 6\
+ --particles 18\
+ --particles_up 18\
+ --j1 1\
+ --j2 0.5\
+ --model spin\
+ --steps 10000\
+ --network_name cnn_mps\
+ --boundary1 pbc\
+ --boundary2 pbc\
+ --save_frequency 2000\
+ --use_x64\
+ --mcmc_step 72\
+ --mode march\
+ --norm 2e-2\
+ --mu 0.98\
+ --lr0 4000\
+ --clip_el 10\
+ --hidden 32\
+ --layers 20\
+ --MLP_hidden 64\
+ --MLP_layers 1\
+ --mpsdim 20\
+ --reduce 200\
+ --seed 100\
+ --precision tf32\
+ --batchsize 4096\
+ --marshall\
+ --polarized\
+ --use_boson\
+ --symmetry D4

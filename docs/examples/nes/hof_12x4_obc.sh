@@ -1,0 +1,64 @@
+python main.py \
+ --output outputs/hofstadter/12_4_N4_obc_V2/ace_small_states4_N3e-1\
+ --L1 12\
+ --L2 4\
+ --particles 4\
+ --particles_up 4\
+ --V 2\
+ --alpha 0.25\
+ --model hofstadter\
+ --dtype complex\
+ --steps 10000\
+ --network_name ace_nes\
+ --num_states 4\
+ --boundary1 obc\
+ --boundary2 obc\
+ --save_frequency 2000\
+ --use_x64\
+ --mcmc_step 120\
+ --mode march\
+ --norm 3e-1\
+ --lr_start 1000\
+ --lr0 4000\
+ --ndet 1 \
+ --hidden 128\
+ --layers 12\
+ --MLP_hidden 128\
+ --MLP_layers 1\
+ --reduce 100\
+ --pad 5\
+ --seed 100\
+ --batchsize 4096\
+ --polarized\
+ --precision tf32
+
+python main.py \
+ --output outputs/hofstadter/12_4_N4_obc_V2/ace_small_states4_N3e-1\
+ --L1 12\
+ --L2 4\
+ --particles 4\
+ --particles_up 4\
+ --V 2\
+ --alpha 0.25\
+ --model hofstadter\
+ --dtype complex\
+ --steps 5000\
+ --network_name ace_nes\
+ --num_states 4\
+ --boundary1 obc\
+ --boundary2 obc\
+ --use_x64\
+ --mcmc_step 60\
+ --mode test\
+ --obs energy\
+ --ndet 1 \
+ --hidden 128\
+ --layers 12\
+ --MLP_hidden 128\
+ --MLP_layers 1\
+ --reduce 100\
+ --pad 5\
+ --seed 100\
+ --batchsize 4096\
+ --polarized\
+ --precision tf32

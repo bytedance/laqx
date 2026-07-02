@@ -1,0 +1,61 @@
+site_name: LaQX
+site_description: Neural Quantum States toolkit for 2D lattice models
+site_author: LaQX Team
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+    - content.code.annotate
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Examples:
+      - Overview: examples/index.md
+      - Hubbard Model: examples/hubbard.md
+      - Spin Model: examples/spin.md
+      - Altermagnetic Hubbard Model: examples/alter-hubbard.md
+      - Hofstadter Model: examples/hofstadter.md
+      - Excited States (NES): examples/nes.md
+      - Time Evolution (tVMC): examples/tvmc.md
+  - Reference:
+      - CLI Parameters: reference/parameters.md
+  - Developer Guide:
+      - Code Structure: code-structure.md
+      - Custom Hamiltonians: custom-hamiltonian.md
+      - Workflow: workflow.md

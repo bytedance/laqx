@@ -1,0 +1,10 @@
+__pycache__
+outputs
+outputs_open
+debug.py
+debug.sh
+outputs_std
+site/
+*.jpg
+*.csv
+*.npz
