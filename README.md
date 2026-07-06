@@ -20,15 +20,6 @@ pip install chex==0.1.90 scipy==1.13.0 optax==0.2.2 numpy==1.26.4 tqdm==4.66.5
 bash docs/examples/hubbard/16x4_pbc_U8_ace_small.sh
 ```
 
-## Documentation
-
-- [Documentation home](https://bytedance.github.io/laqx/)
-- [Installation guide](https://bytedance.github.io/laqx/installation/)
-- [Examples](https://bytedance.github.io/laqx/examples/)
-- [CLI parameters](https://bytedance.github.io/laqx/reference/parameters/)
-
-The source Markdown files are kept under [`docs/`](docs/) for contributors.
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
