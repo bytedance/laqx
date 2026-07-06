@@ -2,7 +2,7 @@
 
 **La**ttice **Q**uantum simulation based on ja**X** — a JAX toolkit for neural quantum-state simulations of two-dimensional lattice models.
 
-This README only covers setup and a first command. See the full documentation for the project overview, examples, and reference material.
+This README only covers setup and a first command. See the [full documentation](https://bytedance.github.io/laqx/) for the project overview, examples, and reference material.
 
 ## Installation
 
@@ -22,10 +22,12 @@ bash docs/examples/hubbard/16x4_pbc_U8_ace_small.sh
 
 ## Documentation
 
-- [Documentation home](docs/index.md)
-- [Installation guide](docs/installation.md)
-- [Examples](docs/examples/index.md)
-- [CLI parameters](docs/reference/parameters.md)
+- [Documentation home](https://bytedance.github.io/laqx/)
+- [Installation guide](https://bytedance.github.io/laqx/installation/)
+- [Examples](https://bytedance.github.io/laqx/examples/)
+- [CLI parameters](https://bytedance.github.io/laqx/reference/parameters/)
+
+The source Markdown files are kept under [`docs/`](docs/) for contributors.
 
 ## License
 
