@@ -78,6 +78,15 @@ parser.add_argument('--damping', type=float, default=0.001)
 parser.add_argument('--lr0', type=float, default=8000)
 parser.add_argument('--lr_start', type=float, default=1000)
 parser.add_argument('--v_init', type=float, default=1e-3)
+parser.add_argument(
+    '--march_no_normalize',
+    action='store_true',
+    default=False,
+    help=(
+        'do not normalize the recurrent MARCH variance before constructing '
+        'the preconditioned score matrix'
+    ),
+)
 parser.add_argument('--warmup', type=int, default=50)
 parser.add_argument('--reset_opt', action='store_true', default=False)
 

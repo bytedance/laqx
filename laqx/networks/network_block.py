@@ -500,10 +500,28 @@ def multi_mps_contraction_pbc(mps_x):
 
     def scan_fn(state, mps_i):
         next_state = jnp.einsum('abn,bcn->acn', state, mps_i)
-        scale = jnp.max(jnp.abs(next_state))
+        scale = jax.lax.stop_gradient(jnp.max(jnp.abs(next_state)))
         return next_state / scale, jnp.log(scale)
 
     final_state, renorm = jax.lax.scan(scan_fn, state, mps_x)
     contracted = jnp.sum(jnp.trace(final_state, axis1=0, axis2=1))
+    log_scale = jnp.sum(renorm)
+    return jnp.sign(contracted), jnp.log(jnp.abs(contracted)) + log_scale
+
+
+def multi_mps_contraction_obc(mps_x):
+    _, mpsdim, _, num_head = mps_x.shape
+    boundary = (
+        jnp.ones((mpsdim, num_head), dtype=mps_x.dtype) / jnp.sqrt(mpsdim)
+    )
+    state = boundary
+
+    def scan_fn(state, mps_i):
+        next_state = jnp.einsum('an,abn->bn', state, mps_i)
+        scale = jax.lax.stop_gradient(jnp.max(jnp.abs(next_state)))
+        return next_state / scale, jnp.log(scale)
+
+    final_state, renorm = jax.lax.scan(scan_fn, state, mps_x)
+    contracted = jnp.sum(final_state * boundary)
     log_scale = jnp.sum(renorm)
     return jnp.sign(contracted), jnp.log(jnp.abs(contracted)) + log_scale

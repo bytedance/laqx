@@ -17,6 +17,13 @@ For this example, $J_1=1$ and $J_2=0.5$, a frustrated regime where the ground st
     The spin Hamiltonian implemented in LaQX is shifted by a constant relative to the conventional $J_1$-$J_2$ Heisenberg Hamiltonian written above. This constant shift does not change the optimized wavefunction, but users should account for it when comparing absolute energies against other codes or literature values.
 
 The command also enables the Marshall sign convention and $D_4$ lattice symmetry.
+The `cnn_mps` implementation uses a shared local-state embedding plus learned
+positional encoding. Its parameter tree is therefore incompatible with
+checkpoints created by the older site-specific-embedding implementation.
+The private training tree calls this ansatz `cnn_mps_new`; the open-source
+interface exposes the same implementation as `cnn_mps`. The open-source
+precision controls are also coarser: `--precision tf32 --use_x64` is the
+closest equivalent to TF32 network contractions with FP64 MARCH arithmetic.
 
 ![CNN-MPS energy convergence](spin/6x6_J1J2_cnnmps.png)
 
@@ -24,7 +31,7 @@ The command also enables the Marshall sign convention and $D_4$ lattice symmetry
 
 ```bash
 python main.py \
-    --output outputs/spin/6_6/cnnmps_D4_H32_L20_MLP64_MPS20_mar_N2e-2_mu0.98 \
+    --output outputs/spin/6_6/cnnmps_new_no_norm_D4_H32_L20_MLP64_MPS20_mar_N2e-2_mu0.98 \
     --L1 6 \
     --L2 6 \
     --particles 18 \
@@ -32,11 +39,11 @@ python main.py \
     --j1 1 \
     --j2 0.5 \
     --model spin \
-    --steps 10000 \
+    --steps 15000 \
     --network_name cnn_mps \
     --boundary1 pbc \
     --boundary2 pbc \
-    --save_frequency 2000 \
+    --save_frequency 1000 \
     --use_x64 \
     --mcmc_step 72 \
     --mode march \
@@ -56,7 +63,8 @@ python main.py \
     --marshall \
     --polarized \
     --use_boson \
-    --symmetry D4
+    --symmetry D4 \
+    --march_no_normalize
 ```
 
 ## What to inspect

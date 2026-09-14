@@ -61,7 +61,7 @@ All command-line options are defined in `main.py`.
 | `--MLP_hidden` | int | `256` | Hidden width for MLP blocks where present. |
 | `--MLP_layers` | int | `2` | Number of MLP layers where present. |
 | `--num_head` | int | `4` | Attention head count for `transformer` and restore/pretrain auxiliary networks. |
-| `--mpsdim` | int | `10` | MPS bond dimension for `cnn_mps`. |
+| `--mpsdim` | int | `10` | MPS bond dimension for `cnn_mps`, whose local features use shared state embeddings plus learned positional encoding. |
 | `--mps_num_head` | int | `2` | Number of MPS heads for `cnn_mps`. |
 | `--cutoff` | int | `3` | Convolution/local-neighborhood cutoff used by ACE/SCALE/CNN-MPS-style networks. |
 | `--ndet` | int | `4` | Number of determinant channels or determinant blocks. |
@@ -88,6 +88,7 @@ All command-line options are defined in `main.py`.
 | `--lr0` | float | `8000` | Decay scale in the VMC learning-rate schedule. |
 | `--lr_start` | float | `1000` | Step offset before VMC learning-rate decay begins. |
 | `--v_init` | float | `1e-3` | Initial velocity-like optimizer state for MARCH. |
+| `--march_no_normalize` | flag | `False` | Keep the recurrent MARCH variance at its accumulated scale instead of normalizing it before score preconditioning. |
 | `--warmup` | int | `50` | Warmup length in the MARCH learning-rate schedule. |
 | `--reset_opt` | flag | `False` | When resuming a VMC or tVMC checkpoint, ignore the saved optimizer state and reinitialize it. |
 | `--burn_in` | flag | `False` | Run `drop_step` MCMC-only iterations before the main training or tVMC loop. |

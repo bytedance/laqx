@@ -1,6 +1,13 @@
 import jax
 import jax.numpy as jnp
 
+
+def prepare_variance(prev_v, n_params, normalize=True):
+    if not normalize:
+        return prev_v
+    return prev_v / jnp.linalg.norm(prev_v) * jnp.sqrt(n_params)
+
+
 def get_march_update_fn(network, local_energy, args, batch_mcmc_step, num_devices):
     if args.num_states == 1:
         log_network = lambda params, data: network(params, data, None)['logdet']
@@ -68,7 +75,11 @@ def get_march_update_fn(network, local_energy, args, batch_mcmc_step, num_device
         Ohat_all = jnp.pad(Ohat, ((0, 0), (0, npad)), mode="constant")
         Ohat_all = jax.lax.all_to_all(Ohat_all.astype(jnp.float32), 'batch', 1, 0, tiled=True).astype(jnp.float64)
 
-        prev_v = prev_v / jnp.linalg.norm(prev_v) * jnp.sqrt(np)
+        prev_v = prepare_variance(
+            prev_v,
+            np,
+            normalize=not getattr(args, "march_no_normalize", False),
+        )
         prev_v_pad = jnp.pad(prev_v, ((0, npad)), mode="constant").reshape(1, -1)
         prev_v_pad = jax.lax.all_to_all(prev_v_pad, axis_name='batch', split_axis=1, concat_axis=0, tiled=True)[0]
 
