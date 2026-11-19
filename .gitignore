@@ -8,3 +8,4 @@ site/
 *.jpg
 *.csv
 *.npz
+.DS_Store
